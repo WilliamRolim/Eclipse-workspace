@@ -1,0 +1,73 @@
+package metodos;
+
+import java.util.Scanner;
+
+public class EstudoMetodosPassagemValor {
+	public static void main(String[] args) {
+		Scanner leitura = new Scanner(System.in);// System.in ler do teclado
+
+		int key = 0;
+
+		Mensagem();
+		double valor1 = leitura.nextDouble();
+		Mensagem();
+		double valor2 = leitura.nextDouble();
+
+		System.out.println(
+				"Digite [1] para Somar \nDigite [2] para Subtrair \nDigite [3] Para multiplicar \nDigite [4] para Dividir");
+		key = leitura.nextInt();
+		if (key <= 0 || key > 5) {
+			System.err.println("Número invalido retorne novamente");
+		} else {
+			while (key != 5) {
+				switch (key) {
+				case 1:
+					System.out.println("Voce entrou no metodo Somar");
+					double resultadoSoma = Somar(valor1, valor2);
+					System.out.println("Resultado..: " + resultadoSoma);
+					break;
+				case 2:
+					System.out.println("Voce entrou no metodo Subtrair");
+					double resultadoSubtrair = Somar(valor1, valor2);
+					System.out.println("Resultado..: " + resultadoSubtrair);
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+
+	// Criando metodo void que não retorna valores
+	static void Mensagem() {
+		System.out.println("Digite o número ..: ");
+	}
+
+	// Criando metodo int que retornara valor inteiro sem passagem de parametros
+	static double Somar(double a, double b) {
+		double c;
+		c = a + b;
+		return c;
+	}
+
+	static double Subtrair(double a, double b) {
+		double c;
+		c = a - b;
+		return c;
+	}
+
+	static double Multiplicar(double a, double b) {
+		double c;
+		c = a * b;
+		return c;
+	}
+
+	static double Dividir(double a, double b) {
+		if (b == 0) {
+			System.out.println("Impossivel Dividir por 0");
+		}
+		double c;
+		c = a / b;
+		return c;
+	}
+}

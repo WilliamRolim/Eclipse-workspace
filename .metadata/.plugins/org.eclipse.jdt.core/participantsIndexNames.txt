@@ -1,0 +1,5 @@
+INDEX VERSION 1.130
+C:\Users\willi\Documents\Eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3613491466.index
+\MVCeSTRUTS\src
+C:\Users\willi\Documents\Eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3455490566.index
+\MVCeSTRUTS\src

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;br.ce.wcaquino.servicos.LocacaoService&apos; to &apos;LocacaoService2&apos;&#x0D;&#x0A;- Original project: &apos;TestesUnitarios2&apos;&#x0D;&#x0A;- Original element: &apos;br.ce.wcaquino.servicos.LocacaoService&apos;&#x0D;&#x0A;- Renamed element: &apos;br.ce.wcaquino.servicos.LocacaoService2&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Rename similarly named elements&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;LocacaoService&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;br.ce.wcaquino.servicos{LocacaoService.java[LocacaoService" matchStrategy="1" name="LocacaoService2" qualified="false" references="true" similarDeclarations="true" stamp="1515273938620" textual="false" version="1.0"/>
+</session>

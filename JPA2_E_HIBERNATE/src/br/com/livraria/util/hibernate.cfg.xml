@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/livraria2</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password"></property>
+		<!-- JDBC connection pool (use the built-in) -->
+		
+		<property name="connection.pool_size">1</property><!-- Pool de conexão JDBC quantas conexões o hibernate vai abrir para gerenciar para mim -->
+		<!-- SQL dialect -->
+		<!-- Dialeto sql o idioma que o sql vai conversar  -->
+		<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+		
+		<!-- Gerenciamento da sessão  -->
+		<property name="current_session_context_class">thread</property>
+		
+		<!-- Desabilitar cache (Recurso avançado - otimização de perfomace, guarda os principais registros em memoria - estudar C3PO)-->
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		
+		<!-- show_sql : EXIBE comandos SQL - quando eu dou um safe no hibernat dispara um insert no 
+		banco, mostra para mim qual instert foi gerado legal para debugar o program -->
+		<property name="show_sql">true</property>
+		
+		<!-- Cria as tabelas hbm2ddl.auto">update -> qualquer opareção que fizer no codigo java irá refletir no banco de dados-->
+		<property name="hbm2ddl.auto">update</property>
+		<mapping class="br.com.livraria.util.Editora"/>
+
+	</session-factory>
+</hibernate-configuration>

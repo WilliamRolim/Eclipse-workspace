@@ -1,0 +1,17 @@
+package metodos;
+
+public class EstudoSobrecardaDeMetodos {
+ public static void main(String[] args) {
+	
+}
+ 
+ public static int LigarTV(){
+	 int canal = 5;
+	 return canal;
+ }
+ 
+ public static int LigarTV(int c){
+	 int canal = c;
+	 return canal;
+ }
+}

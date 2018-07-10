@@ -1,0 +1,18 @@
+package metodos;
+
+public class EstudoMetodos {
+public static void main(String[] args) {
+	Mensagem();
+	System.out.println(PassagemValor());
+}
+
+static void Mensagem(){
+	System.out.println("Estamos executando o método Mensagem");
+}
+
+static int PassagemValor(){
+	int a = 7, b = 13, c = a + b;
+	return c;
+	
+}
+}

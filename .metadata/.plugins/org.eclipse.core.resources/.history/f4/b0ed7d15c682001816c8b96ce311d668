@@ -1,0 +1,29 @@
+package metodos;
+
+import java.util.Scanner;
+
+public class EstudoMetodosPassagemValor {
+public static void main(String[] args) {
+	Scanner leitura = new Scanner(System.in);//System.in ler do teclado
+	Mensagem();
+	double valor1 = leitura.nextDouble();
+	Mensagem();
+	double valor2 = leitura.nextDouble();
+	PassagemValor(valor1, valor2);
+	//System.out.println(PassagemValor());
+	System.out.println(valor);
+}
+
+//Criando metodo void que não retorna valores
+static void Mensagem(){
+	System.out.println("Digite o número ..: ");
+}
+
+//Criando metodo int que  retornara valor inteiro sem passagem de parametros
+static double Somar(double a, double b){
+	double c;
+	c = a + b;
+	return c;
+	
+}
+}

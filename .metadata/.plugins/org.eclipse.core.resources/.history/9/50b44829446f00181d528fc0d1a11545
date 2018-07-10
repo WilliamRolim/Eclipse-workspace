@@ -1,0 +1,5 @@
+package DesenvolvimentoWebComStruts;
+
+public class ConnectionFactory {
+
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cadastro de Funcionarios</title>
+</head>
+<body>
+
+<h1>Cadastro de funcionario</h1>
+
+<form name="frmCadastro" method="post" action="CadastrarFuncionarioServlet">
+<p>Nome: <input type="text" name="nome" size="30"/></p>
+<p>Data de Nascimento: <input type="text" name="nascimento" size="15"/>(dd/mm/yyyy)</p>
+<p>Salario R$: <input type="text" name="salario" size="15"/></p>
+<p>Sexo:<input type="radio" name="sexo" value="M" />Masculino/>
+<input type="radio" name="sexo" value="F" />Feminino/></p>
+<p><input type="checkbox" name="temporario" value="true"/>Funcionario Temporario</p>
+<p><input type="submit" value="cadastrar"/></p>
+
+</form>
+</body>
+</html>

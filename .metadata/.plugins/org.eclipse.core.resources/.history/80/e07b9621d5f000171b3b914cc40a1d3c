@@ -1,0 +1,64 @@
+package br.ce.wcaquino.servicos;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import br.ce.wcaquino.entidades.Usuario;
+
+
+
+
+
+public class AssertTest {
+	@Test
+public void Teste(){
+	Assert.assertTrue(true);//Verificar se o valor for verdadeiro
+	Assert.assertTrue(!false);//Verificar se o valor for falso - não recomendado
+	Assert.assertFalse(false);//Verificar se o valor for falso
+	
+	Assert.assertEquals(1, 1);
+	Assert.assertEquals(0.51, 0.51, 0.01);//0.01 = delta: margem de erro de comparação
+	Assert.assertEquals(Math.PI, 3.14, 0.01);//Preciso de uma margem de erro -
+	//- pois pi é infinito 0.01 = delta: margem de erro de comparação
+	
+	//todo tipo primitivo possui uma representação em forma de objeto 
+	//Conhecido como classe Wrappers
+	int i = 5; //tipo primitivo
+	Integer  j = 5;//tbém posso representalo utilizando o objeto *Integer
+	
+	Assert.assertEquals(Integer.valueOf(i), j);//Passando o tipo primitivo para objeto
+	Assert.assertEquals(i, j.intValue());//Passando o objeto para tipo primitivo
+	
+	Assert.assertEquals("bola","bola");
+	Assert.assertNotEquals("bola","bola2");//verificar se strings são diferentes
+	Assert.assertTrue("bola".equalsIgnoreCase("Bola"));//Não considerar o B maiusculo na comparação
+	Assert.assertTrue("bola".startsWith("bo"));//Comparar radicais iguais
+	
+	//A igualdade dos objetos será verificada atraves do metodo equals do proprio objeto
+	//pq ninguem melhor que o proprio objeto para dizer que ele é igual ou não a outro
+	
+	Usuario u1 = new Usuario("usuario");
+	Usuario u2 = new Usuario("usuario");
+	
+	//Assert.assertEquals(u1, u2);Não está considerando que os objetos são iguais
+	//procurar o metodo equals daquele objeto, o usuario não tem o metodo equals implementado
+	//O java vai procurar nas superclasses , até procurar o metodo equals
+	//como esse metodo não tem nenhuma super classe declarada
+	//ficou claro que ele está estendendo o object que é a superclasse de todas as classes
+	//nesse caso a comparação é para ver que um objeto é igual ao outro
+	
+	Assert.assertEquals(u1, u1);
+	Assert.assertEquals(u1, u2);
+	
+	Usuario u3 = null;
+	
+	//Comparação a nivel de instancia, quero garantir que seja da mesma intancia
+	//Assert.assertSame(u1, u2); erro pois são instancias diferentes
+	
+	Assert.assertNull(u3);//Verificar se o objeto é igual a null
+	
+	Assert.assertNotEquals(u1, u2);//apesar de serem iguais ele são de instancias diferentes
+	
+	
+	}
+}

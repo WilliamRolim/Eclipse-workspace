@@ -1,0 +1,33 @@
+package com.abctreinamentos;
+
+import java.util.List;
+
+public interface CursoDAOInterface {
+	public  void inserirCurso(); 
+
+	
+
+	public static void inserirCursoPS() {
+
+	}
+
+	public static void inserirCursoSP() {
+
+	}
+
+	public static Cliente consultar() {
+		return null;
+	}
+
+	public static List<Curso> consultarTodosCursos() {
+		return null;
+	}
+
+	public static void alterar() {
+
+	}
+
+	public static void excluir() {
+
+	}
+}

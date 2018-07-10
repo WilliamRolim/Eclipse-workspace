@@ -1,0 +1,11 @@
+package arryunidimensional;
+
+public class ProjetoArrayUnidimensional {
+public static void main(String[] args) {
+	//Array unidimensional
+	//declarar array
+	//meses do ano
+	
+	String[] meses = new String [12];
+}
+}

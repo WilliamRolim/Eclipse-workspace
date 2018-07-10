@@ -1,0 +1,21 @@
+package com.abctreinamentos;
+
+import java.util.List;
+
+public interface CursoDAOInterface {
+	public  void inserirCurso(); 
+
+	
+
+	public void inserirCursoPS();
+
+	public void inserirCursoSP();
+
+	public Cliente consultar();
+
+	public List<Curso> consultarTodosCursos();
+
+	public  void alterar();
+
+	public void excluir();
+}

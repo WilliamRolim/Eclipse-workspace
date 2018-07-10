@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;arraylist.ArrayListExplicacao&apos; to &apos;Array_ListExplicacao&apos;&#x0D;&#x0A;- Original project: &apos;DevMedia_DiferencaEntreArrayListVectorELinkedList&apos;&#x0D;&#x0A;- Original element: &apos;arraylist.ArrayListExplicacao&apos;&#x0D;&#x0A;- Renamed element: &apos;arraylist.Array_ListExplicacao&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ArrayListExplicacao&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;arraylist{ArrayListExplicacao.java[ArrayListExplicacao" matchStrategy="1" name="Array_ListExplicacao" qualified="false" references="true" similarDeclarations="false" stamp="1530999556068" textual="false" version="1.0"/>
+</session>

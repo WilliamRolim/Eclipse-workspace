@@ -1,0 +1,12 @@
+package arraymultidimensional;
+
+public class ProjetoArrayMultiDimensional {
+public static void main(String[] args) {
+	String contatos[][][] = 
+		{
+				{"Mariana","Silva","2545-3456"},
+				{"Juliana", "Tamura", "9845-4346"}
+				
+		};
+}
+}

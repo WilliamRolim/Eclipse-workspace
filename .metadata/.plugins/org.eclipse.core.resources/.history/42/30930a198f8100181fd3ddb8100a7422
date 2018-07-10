@@ -1,0 +1,64 @@
+package disciplina3;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class CursoApp {
+	// alt para cima subir a linha
+	static String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	static String usuario = "curso_java";
+	static String senha = "schema";
+
+	static Connection conexao; // Connection que faz a conexão com o banco de
+	// dados
+
+	public static void conectar() throws SQLException {
+		conexao = DriverManager.getConnection(url, usuario, senha);
+		conexao.setAutoCommit(false);
+	}
+
+	public static void desconectar() throws SQLException {
+		conexao.close();
+	}
+	
+	public static void inserir (int cdcurso, String nome, double valor, String url) throws SQLException{
+		String sql = "INSERT INTO curso (cdcurso, nome, valor, url) VALUES ('" + cdcurso + 
+				"' , '" + nome + "'," + valor + ",'" + url + "')";
+		Statement statement = conexao.createStatement();
+		statement.execute(sql);
+		conexao.commit();//Confirmo a transação com o commit
+	}
+	
+	public static void inserirPS (int cdcurso, String nome, double valor, String url) throws SQLException{
+		String sql = "INSERT INTO curso (cdcurso, nome, valor, url) VALUES (?,?,?,?)";
+		PreparedStatement ps = conexao.prepareStatement(sql);
+		ps.setInt(1,cdcurso);
+		ps.setString(2, nome);
+		ps.setDouble(3,valor);
+		ps.setString(4, url);
+		ps.executeUpdate();
+		conexao.commit();
+	}
+	
+	public static void inserirSP (int cdcurso, String nome, double valor, String url) throws SQLException{
+		String sql = "{call sp_inserircurso(?,?,?,?)";
+		CallableStatement cstmt = conexao.prepareCall(sql);
+		cstmt.setInt(1, cdcurso);
+		cstmt.setString(2, nome);
+		cstmt.setDouble(3, valor);
+		cstmt.setString(4,url);
+		cstmt.execute();
+		conexao.commit();
+	}
+	
+	public static void filtrar (int cdcurso) throws SQLException{
+		String sql = "(SELECT * FROM curso WHERE cdcurso= " + cdcurso +")";
+		PreparedStatement ps = conexao.prepareStatement(sql);
+		while (ps)
+	}
+}

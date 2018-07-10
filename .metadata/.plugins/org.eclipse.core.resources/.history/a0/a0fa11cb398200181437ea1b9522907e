@@ -1,0 +1,219 @@
+package com.abctreinamentos;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
+public class CursoDAO  {
+
+	static String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	static String usuario = "curso_java";
+	static String senha = "schema";
+	// Connection É a interface utilizada para representar uma conexão com um
+	// Banco de
+	// Dados específico. Oferece as seguintes funcionalidades:
+	static Connection conexao;
+
+
+	public static void conectar() throws SQLException {
+		// DriveManeger É a classe utilizada para estabelecer uma conexão entre
+		// o driver apropriado
+		// e o Banco de Dados
+		conexao = DriverManager.getConnection(url, usuario, senha);
+		// interface DatabaseMetaData para obter o nome do fabricante do
+		// BD e a sua versão utilizada.
+		DatabaseMetaData meta = conexao.getMetaData();
+
+		conexao.setAutoCommit(false);
+		System.out.println(">>>>>>>>>Conectando ao Banco de Dados:  " + meta.getDatabaseProductVersion());
+	}
+
+	
+	public static void desconectar() throws SQLException {
+		conexao.close();
+
+	}
+
+
+	public void inserirCurso(Curso curso) throws SQLException {
+		String sql = "INSERT INTO curso (cdcurso, nome, valor, url) VALUES cdcurso= " + curso.getCdcurso() + ", nome ='"
+				+ curso.getNomecurso() + "',valor = " + curso.getValor() + ",url = '" + curso.getUrl() + "')";
+		Statement statement = conexao.createStatement();
+		statement.execute(sql);
+		conexao.commit();
+	}
+
+
+	public void inserirCursoPS(Curso curso) throws SQLException {
+		String sql = "INSERT INTO curso (cdcurso, nome, valor, url) VALUES (?,?,?,?)";
+		PreparedStatement statement = conexao.prepareStatement(sql);
+		statement.setInt(1, curso.getCdcurso());
+		statement.setString(2, curso.getNomecurso());
+		statement.setFloat(3, curso.getValor());
+		statement.setString(4, curso.getUrl());
+		statement.executeUpdate();
+		conexao.commit();
+	}
+
+
+	public void inserirCursoSP(Curso curso) throws SQLException {
+		String sql = "{call sp_inserircurso(?,?,?,?)}";
+		CallableStatement cstmt = conexao.prepareCall(sql);
+		cstmt.setInt(1, curso.getCdcurso());
+		cstmt.setString(2, curso.getNomecurso());
+		cstmt.setFloat(3, curso.getValor());
+		cstmt.setString(4, curso.getUrl());
+		cstmt.executeUpdate();
+		conexao.commit();
+
+	}
+
+	
+	public Curso consultar(int cdcurso) throws SQLException {
+		String sql = "SELECT(nome,valor,url) FROM curso WHERE cdcurso = " + cdcurso;
+		Statement statement = conexao.createStatement();
+		ResultSet rs = statement.executeQuery(sql);
+		Curso curso = null;
+
+		while (rs.next()) {
+			curso = new Curso(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4));
+		}
+		return curso;
+	}
+
+
+	public List<Curso> consultarTodosCursos() throws SQLException {
+		String sql = "SELECT * FROM curso";
+		// Statement É a interface utilizada para representar uma instrução SQL
+		// e retornar os
+		// resultados produzidos
+		Statement statement = conexao.createStatement();
+		ResultSet rs = statement.executeQuery(sql);
+
+		List<Curso> cursos = new LinkedList<>();
+		while (rs.next()) {
+			Curso curso = new Curso(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4));
+			cursos.add(curso);
+		}
+		return cursos;
+	}
+
+
+	public void alterar(Curso curso) throws SQLException {
+		String sql = "UPDATE curso SET nome = ?," + "valor = ?," + "uml = ?," + "WHERE cdcurso = ?";
+		PreparedStatement ps = conexao.prepareStatement(sql);
+		ps.setInt(1, curso.getCdcurso());
+		ps.setString(2, curso.getNomecurso());
+		ps.setFloat(3, curso.getValor());
+		ps.setString(4, curso.getUrl());
+		ps.executeUpdate();
+		conexao.commit();
+		
+	}
+
+
+	public void excluir(int cdcurso) throws SQLException {
+		String sql = "DELETE FROM curso WHERE cdcurso = ?";
+		PreparedStatement ps = conexao.prepareStatement(sql);
+		ps.executeUpdate();
+		conexao.commit();		
+	}
+	
+	public static void main(String[] args) throws SQLException {
+		try {
+			// primeira coisa que eu tenho que fazer é conectar no banco
+			conectar();
+
+			// Criar um menu com opções de tarefas ao qual o usuario quer
+			// realizar
+			// System.in para ler do teclado
+			Scanner entrada = new Scanner(System.in);
+			int opcao = 0;
+			int cdcurso;
+			String nome;
+			float email;
+			String uml;
+			while (opcao != 6) {
+				System.out.println("Sistema de gerenciamento de Clientes");
+				System.out.println("===================================");
+				System.out.println("Digite [1] Para Consultar todos os clientes");
+				System.out.println("Digite [2] Para Consultar Um Cliente Especifico");
+				System.out.println("Digite [3] Para Cadastrar um Novo Cliente ");
+				System.out.println("Digite [4] Para Alterar um Cliente ");
+				System.out.println("Digite [5] Para Excluir um Cliente ");
+				System.out.println("Digite [6] Para Sair");
+				System.out.println("===================================");
+
+				opcao = entrada.nextInt();
+
+				switch (opcao) {
+				case 1:// Consultando Todos
+					System.out.println("[1] Consultar Todos");
+					List<Cliente> clientes = ClienteDAO.consultarTodos();
+					clientes.forEach(System.out::println);
+					// clientes.size() só ver o tamanho da lista
+					System.out.println("Número de clientes >>>" + clientes.size() + "\n");
+
+					break;
+				case 2:// Consultar
+					System.out.println("[2] Consultar");
+					System.out.println("Favor Informar o CPF..:  ");
+					cpf = entrada.nextLong();
+					Cliente cliente = ClienteDAO.consultar(cpf);
+					System.out.println(cliente);
+					break;
+
+				case 3:// Cadastrar
+					System.out.println("[3] Inserir");
+					System.out.println("Favor Informar o CPF.:  ");
+					cpf = entrada.nextLong();
+					entrada.nextLine();// Esvaziar o Buffer do teclado
+					System.out.println("Favor Informar o Nome.:  ");
+					nome = entrada.nextLine();
+					System.out.println("Favor Informar o Email.:  ");
+					email = entrada.nextLine();
+					// inserir(cpf, nome, email);
+					// inserirPS(cpf, nome, email);
+					Cliente cliente1 = new Cliente(cpf, nome, email);
+					ClienteDAO.inserirSP(cliente1);
+					break;
+				case 4:// Alterar
+					System.out.println("[4] Alterar");
+					System.out.println("Favor Informar o CPF.:  ");
+					cpf = entrada.nextLong();
+					entrada.nextLine();// Esvaziar o Buffer do teclado
+					System.out.println("Favor Informar o Nome.:  ");
+					nome = entrada.nextLine();
+					System.out.println("Favor Informar o Email.:  ");
+					email = entrada.nextLine();
+					Cliente cliente2 = new Cliente(cpf, nome, email);
+					ClienteDAO.alterar(cliente2);
+					break;
+				case 5:// Excluir
+					System.out.println("[5] Excluir");
+					System.out.println("Favor Informar o CPF.:  ");
+					cpf = entrada.nextLong();
+					ClienteDAO.excluir(cpf);
+					break;
+				case 6:
+					System.out.println("[6] Encerrando o Sistema");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();// printStackTrace() Imprime a pilha de erros
+		}
+
+	}
+
+}
+
+
+}

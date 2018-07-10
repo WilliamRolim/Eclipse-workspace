@@ -1,0 +1,95 @@
+package metodos;
+
+import java.util.Scanner;
+
+public class EstudoMetodosPassagemValor {
+	public static void main(String[] args) {
+		Scanner leitura = new Scanner(System.in);// System.in ler do teclado
+
+		int key = 0;
+
+		while (key != 5) {
+			System.out.println("Digite [1] para Somar \nDigite [2] para Subtrair \nDigite [3] Para multiplicar "
+					+ "\nDigite [4] para Dividir \nDigite [5] para sair");
+			key = leitura.nextInt();
+
+			Mensagem();
+			double valor1 = leitura.nextDouble();
+			Mensagem();
+			double valor2 = leitura.nextDouble();
+
+			if (key <= 0 || key >= 6) {
+				System.err.println("\nNúmero invalido retorne novamente");
+			} else {
+				switch (key) {
+
+				case 1:
+					System.out.println("\nVoce entrou no metodo Somar");
+					double resultadoSoma = Somar(valor1, valor2);
+					System.out.println("\nResultado..: " + resultadoSoma + "\n");
+					System.out.println("______________________________________________________________");
+					break;
+				case 2:
+					System.out.println("\nVoce entrou no metodo Subtrair");
+					double resultadoSubtrair = Subtrair(valor1, valor2);
+					System.out.println("\nResultado..: " + resultadoSubtrair + "\n");
+					System.out.println("______________________________________________________________");
+					break;
+				case 3:
+					System.out.println("\nVoce entrou no metodo Multiplicar");
+					double resultadoMultiplicar = Multiplicar(valor1, valor2);
+					System.out.println("\nResultado..: " + resultadoMultiplicar + "\n");
+					System.out.println("______________________________________________________________");
+					break;
+				case 4:
+					System.out.println("\nVoce entrou no metodo Dividir");
+					if (valor2 == 0) {
+						System.out.println("\nImpossivel Dividir por 0 \n");
+						System.out.println("______________________________________________________________");
+						break;
+					} else {
+						double resultadoDividir = Dividir(valor1, valor2);
+						System.out.println("\nResultado..: " + resultadoDividir + "\n");
+						System.out.println("______________________________________________________________");
+						break;
+					}
+				case 5:
+					System.out.println("\nEncerrando o sistema - Good Bye");
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+
+	// Criando metodo void que não retorna valores
+	static void Mensagem() {
+		System.out.println("\nDigite o número ..: ");
+	}
+
+	// Criando metodo int que retornara valor inteiro sem passagem de parametros
+	static double Somar(double a, double b) {
+		double c;
+		c = a + b;
+		return c;
+	}
+
+	static double Subtrair(double a, double b) {
+		double c;
+		c = a - b;
+		return c;
+	}
+
+	static double Multiplicar(double a, double b) {
+		double c;
+		c = a * b;
+		return c;
+	}
+
+	static double Dividir(double a, double b) {
+		double c;
+		c = a / b;
+		return c;
+	}
+}

@@ -1,0 +1,12 @@
+package br.com.pacote;
+
+public class GerenteGeral extends Gerente implements Gratificacao{
+
+	@Override
+	public double calculaGratificacao() {
+		// TODO Auto-generated method stub
+		double gratificacao = this.getSalario()/10;//10% gratificacao
+		return gratificacao;
+	}
+//todos herdam os metodos do gerente
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<constant name="struts.devMode" value="false" />
+	<package name="default" extends="struts.default">
+		<!-- Toda vez que alguem pedir que uma açao que não existe (enviar.action) ele chama a 
+			ação home.action -->
+		<default-action-ref name="home-action" />
+		
+		<action name="home-action">
+		<result>/WEB-INF/pages/home.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,61 @@
+package com.abctreinamentos;
+
+public class Curso {
+	private int cdcurso;
+	private String nomecurso;
+	private float valor;
+	private String uml;
+	
+	public Curso() {
+		
+	}
+
+	public Curso(int cdcurso, String nomecurso, float valor, String uml) {
+		super();
+		this.cdcurso = cdcurso;
+		this.nomecurso = nomecurso;
+		this.valor = valor;
+		this.uml = uml;
+	}
+
+	public int getCdcurso() {
+		return cdcurso;
+	}
+
+	public void setCdcurso(int cdcurso) {
+		this.cdcurso = cdcurso;
+	}
+
+	public String getNomecurso() {
+		return nomecurso;
+	}
+
+	public void setNomecurso(String nomecurso) {
+		this.nomecurso = nomecurso;
+	}
+
+	public float getValor() {
+		return valor;
+	}
+
+	public void setValor(float valor) {
+		this.valor = valor;
+	}
+
+	public String getUml() {
+		return uml;
+	}
+
+	public void setUml(String uml) {
+		this.uml = uml;
+	}
+
+	@Override
+	public String toString() {
+		return "Curso [cdcurso=" + cdcurso + ", nomecurso=" + nomecurso + ", valor=" + valor + ", uml=" + uml + "]";
+	}
+	
+	
+	
+	
+}

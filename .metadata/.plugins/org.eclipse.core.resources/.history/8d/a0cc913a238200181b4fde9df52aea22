@@ -1,0 +1,94 @@
+package com.abctreinamentos;
+
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
+public class CursoDAO implements CursoDAOInterface {
+	
+	static String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	static String usuario = "curso_java";
+	static String senha = "schema";
+	//Connection É a interface utilizada para representar uma conexão com um Banco de
+	//Dados específico. Oferece as seguintes funcionalidades:
+	static Connection conexao;
+	
+	@Override
+	public void conectar() throws SQLException {
+		//DriveManeger É a classe utilizada para estabelecer uma conexão entre o driver apropriado
+		//e o Banco de Dados
+		conexao = DriverManager.getConnection(url, usuario, senha);
+		//interface DatabaseMetaData para obter o nome do fabricante do
+		//BD e a sua versão utilizada.
+		DatabaseMetaData meta = conexao.getMetaData();
+		
+		conexao.setAutoCommit(false);
+		System.out.println(">>>>>>>>>Conectando ao Banco de Dados:  " + meta.getDatabaseProductVersion());
+	}
+
+	@Override
+	public void desconectar() throws SQLException {
+		conexao.close();
+		
+	}
+	@Override
+	public void inserirCurso(Curso curso) throws SQLException {
+		String sql = "INSERT INTO curso (cdcurso, nome, valor, url) VALUES cdcurso= " + curso.getCdcurso() + ", nome ='"
+				+curso.getNomecurso() + "',valor = " + curso.getValor() + ",url = '" + curso.getUrl() + "')";
+		Statement statement = conexao.createStatement();
+		statement.execute(sql);
+		conexao.commit();
+	}
+	
+	@Override
+	public void inserirCursoPS(Curso curso) throws SQLException {
+		String sql = "INSERT INTO curso (cdcurso, nome, valor, url) VALUES (?,?,?,?)";
+		PreparedStatement statement = conexao.prepareStatement(sql);
+		statement.setInt(1, curso.getCdcurso());
+		statement.setString(2, curso.getNomecurso());
+		statement.setFloat(3, curso.getValor());
+		statement.setString(4, curso.getUrl());
+		statement.executeUpdate();
+		conexao.commit();
+	}
+	
+	@Override
+	public void inserirCursoSP(Curso curso) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public Cliente consultar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Curso> consultarTodosCursos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void alterar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void excluir() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+}
